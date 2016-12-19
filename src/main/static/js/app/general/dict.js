@@ -4,7 +4,7 @@ $(function() {
 		field : '',
 		title : '',
 		checkbox : true
-	},{
+	}, {
 		field : 'parentKey',
 		title : '种类',
 		search: true,
