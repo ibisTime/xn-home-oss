@@ -471,6 +471,22 @@ function getCompany(userId) {
     return res1;
 }
 
+function getCompanyId(userId) {
+	return res1;
+	 var res1;
+	    reqApi({
+	        code: '806013',
+	        json: {
+	            userId: userId,
+	            location: '1'
+	        },
+	        sync: true
+	    }).then(function(res) {
+	        res1 = res.data.length > 0 ? res.data[0].code: '0';
+	    });
+	    return res1;
+}
+
 $(function() {
 	//下拉框
 	setTimeout(function() {
