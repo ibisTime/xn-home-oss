@@ -6,7 +6,7 @@ fis.match('*', {
   release: '/static/$0'
 });
 
-fis.match('*.html', {
+fis.match('**.html', {
   release: '/$0'
 });
 

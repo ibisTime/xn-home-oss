@@ -668,6 +668,35 @@ function buildList(options) {
 		}
 		window.location.href = options.router + "_addedit.html?code="+(selRecords[0].code || selRecords[0].id) + urlParamsStr + codeParams;
 	});
+
+    $('#rockBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if(selRecords.length <= 0){
+            alert("请选择记录");
+            return;
+        }
+
+
+        if(!confirm("确认是否注销该记录？")){
+            return false;
+        }
+        var codeParams = {code:selRecords[0].code};
+        if (options.uid) {
+            codeParams = {};
+            options.uid.forEach(function(i) {
+                codeParams[i] = selRecords[0][i];
+            });
+        }
+        var data = codeParams;
+
+        reqApi({
+            code: options.rockCode,
+            json: data
+        }).done(function(data) {
+            alert('操作成功');
+            $('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});
+        });
+    });
 	
 	$('#deleteBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
