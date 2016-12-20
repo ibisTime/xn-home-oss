@@ -1027,7 +1027,7 @@ $.extend($.validator, {
 				var val = $(element).val();
 				return val && val.length > 0;
 			} else if (element.type === 'file' && element.id.indexOf('Img') > -1) {
-				var val = $('#' + element.id.replace('Img', '')).attr('src');
+				var val = $('#' + element.id.replace('Img', '')).find('img');
 				return val && val.length > 0;
 			}
 			if ( this.checkable(element) ) {

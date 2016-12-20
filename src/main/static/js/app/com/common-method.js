@@ -456,6 +456,20 @@ function getSystemId() {
 	return sessionStorage.getItem('systemCode');
 }
 
+function getCompany(userId) {
+    var res1;
+    reqApi({
+        code: '806013',
+        json: {
+            userId: userId,
+            location: '1'
+        },
+        sync: true
+    }).then(function(res) {
+        res1 = res.data.length > 0 ? res.data[0]: '';
+    });
+    return res1;
+}
 
 $(function() {
 	//下拉框
@@ -546,9 +560,12 @@ function objectArrayFilter(arr, keys) {
 }
 
 function buildList(options) {
-	
-	showPermissionControl();
-	
+
+	if (options.type != 'o2m') {
+		showPermissionControl();
+
+	}
+
 	options = options || {};
 	var html = '<ul>';
 	var dropDownList = [];
@@ -575,7 +592,7 @@ function buildList(options) {
 			}
 		}
 		
-		if (item.key || item.type == 'select') {
+		if ((item.key || item.type == 'select') && options.type != 'o2m') {
 			dropDownList.push(item);
 		}
 		
@@ -668,35 +685,6 @@ function buildList(options) {
 		}
 		window.location.href = options.router + "_addedit.html?code="+(selRecords[0].code || selRecords[0].id) + urlParamsStr + codeParams;
 	});
-
-    $('#rockBtn').click(function() {
-        var selRecords = $('#tableList').bootstrapTable('getSelections');
-        if(selRecords.length <= 0){
-            alert("请选择记录");
-            return;
-        }
-
-
-        if(!confirm("确认是否注销该记录？")){
-            return false;
-        }
-        var codeParams = {code:selRecords[0].code};
-        if (options.uid) {
-            codeParams = {};
-            options.uid.forEach(function(i) {
-                codeParams[i] = selRecords[0][i];
-            });
-        }
-        var data = codeParams;
-
-        reqApi({
-            code: options.rockCode,
-            json: data
-        }).done(function(data) {
-            alert('操作成功');
-            $('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});
-        });
-    });
 	
 	$('#deleteBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
@@ -1020,8 +1008,11 @@ function buildList(options) {
 	if ('sortOrder' in options) {
 		sortOrder = options['sortOrder'];
 	}
-
-	$('#tableList').bootstrapTable({
+	var tableEl = $('#tableList');
+	if (options.tableId) {
+		tableEl = $('#' + options.tableId);
+	}
+	tableEl.bootstrapTable({
 		method : "post",
 		url : urlDispatch(options.pageCode),
 		striped : true,
@@ -1086,6 +1077,9 @@ function buildDetail(options) {
 	for (var i = 0, len = fields.length; i < len; i++) {
 		var item = fields[i];
 		rules[item.field] = {};
+		if (!('readonly' in item) && options.view) {
+			item.readonly = true;
+		}
 		if (item.type == 'img') {
 			rules[item.field + 'Img'] = {};
 			rules[item.field + 'Img'].required = item.required;
@@ -1158,7 +1152,7 @@ function buildDetail(options) {
 				imgList.push(item);
 				html += '<div class="btn-file"><span>选择图片</span>' +
 			    	'<input type="file" tabindex="1" id="'+item.field+'Img" name="'+item.field+'Img" />' +
-			    	'</div><img style="margin-left: 195px;" src="" id="'+item.field+'" /></li>';
+			    	'</div><div id="'+item.field+'" style="margin-left: 195px;"></div></li>';
 			} else if (item.type == 'textarea') {
 				textareaList.push({field: item.field});
 				html += '<div style="width:800px;float:left;"><textarea style="height:300px;" id="'+item.field+'" name="'+item.field+'"></textarea></div></li>';
@@ -1200,6 +1194,10 @@ function buildDetail(options) {
 	}
 	
 	$('.form-info').append(html);
+
+	if (options.view) {
+		$('#subBtn').remove();
+	}
 	
 	for (var i = 0, len = btnHandlers.length; i < len; i++) {
 		$('#' + btnHandlers[i].id).on('click', btnHandlers[i].handler);
@@ -1212,7 +1210,12 @@ function buildDetail(options) {
 		if ($('#jsForm').valid()) {
 			var data = $('#jsForm').serializeObject();
 			$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
-				data[el.id] = $(el).attr('src');
+				var imgs = $(el).find('img');
+				var values = [];
+				imgs.each(function(j, img) {
+					values.push(img.src);
+				});
+				data[el.id] = values.join('||');
 			});
 			if ($('#jsForm').find('#province')[0]) {
 				var province = $('#province').val();
@@ -1404,14 +1407,29 @@ function buildDetail(options) {
 						}							
 						
 					} else if (item.type == 'o2m') {
-						$('#' + item.field).html('<table id="'+item.field+'List"></table>');
-						$('#'+item.field+'List').bootstrapTable({
-							striped : true,
-							clickToSelect : true,
-							singleSelect : true,
-							columns : item.columns,
-							data: displayValue
-						});
+						if (item.pageCode) {
+							$('#' + item.field).html('<table id="'+item.field+'List"></table>');
+							var searchParams = {};
+							searchParams[item['key']] = $('#code').val();
+							var options1 = {
+								columns: item.columns,
+								pageCode: item.pageCode,
+								tableId: item.field+'List',
+								searchParams: searchParams,
+								type: 'o2m'
+							};
+							buildList(options1);
+						} else {
+							$('#' + item.field).html('<table id="'+item.field+'List"></table>');
+							$('#'+item.field+'List').bootstrapTable({
+								striped : true,
+								clickToSelect : true,
+								singleSelect : true,
+								columns : item.columns,
+								data: displayValue
+							});
+						}
+
 					}
 					else if (item.type == 'select' && item.data) {
 						var realValue = displayValue;
@@ -1509,7 +1527,7 @@ function buildDetail(options) {
 							var imgsHtml = '';
 							sp.forEach(function(item) {
 								imgsHtml += realValue.indexOf('http://') > -1 ? '<img src="'+item+'" style="max-width: 300px;" />' :
-								'<img src="'+OSS.picBaseUrl + '/' + item+'" style="max-width: 300px;" />';
+								'<img src="'+OSS.picBaseUrl + '/' + item+'" style="max-width: 300px;">';
 							});
 							$('#' + item.field).html(imgsHtml);
 						}
@@ -1542,9 +1560,17 @@ function buildDetail(options) {
 				} else {
 					if (item.type == 'img') {
 						var realValue = data[item['[value]']] || displayValue || '';
-						if (realValue.indexOf('http://') > -1) {
-							$('#' + item.field).attr('src', realValue);
-						}
+						var sp = realValue.split('||');
+						var imgsHtml = '';
+						sp.forEach(function(item) {
+							imgsHtml += '<div class="img-ctn" style="display: inline-block;position: relative;">' +
+							'<img src="'+(realValue.indexOf('http://') > -1? item : (OSS.picBaseUrl + '/' + item))+'">' +
+							'<i class="zmdi zmdi-close-circle-o zmdi-hc-fw"></i></div>';
+						});
+						$('#' + item.field).html(imgsHtml);
+						$('#' + item.field).find('.zmdi-close-circle-o').on('click', function(e) {
+							$(this).parent().remove();
+						});
 					} else if (item.type == 'radio') {
 						$('input[name='+item.field+'][value='+displayValue+']').prop('checked', true);
 					} else if (item.type == 'textarea') {
@@ -1665,7 +1691,7 @@ function uploadInit() {
     // 触发选择文件的按钮的id
     var btnId = editor.customUploadBtnId || editor.prev().find('input').attr('id');
     // 触发选择文件的按钮的父容器的id
-    var containerId = editor.customUploadContainerId || editor.prev().parent().attr('id');
+    var containerId = editor.customUploadContainerId || editor.prev().next().attr('id');
     
     var dropId = editor.id || (editor.attr && editor.attr('id')) || 'jsForm';
     
@@ -1693,7 +1719,8 @@ function uploadInit() {
         // save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
         //domain: 'http://oi99f4peg.bkt.clouddn.com/',
-        domain: 'http://7xnuu2.com1.z0.glb.clouddn.com/',
+        //domain: 'http://7xnuu2.com1.z0.glb.clouddn.com/',
+		domain: 'http://oigx51fc5.bkt.clouddn.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: containerId, //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '100mb', //最大文件体积限制
@@ -1745,7 +1772,12 @@ function uploadInit() {
 
                 // 插入图片到editor
                 editor.command && editor.command(null, 'insertHtml', '<img src="' + sourceLink + '" style="max-width:100%;"/>');
-                editor.attr && editor.attr('src', sourceLink);
+				if (editor.append) {
+					var imgCtn = $('<div class="img-ctn" style="display: inline-block;position: relative;"><img src="'+sourceLink+'" /><i class="zmdi zmdi-close-circle-o zmdi-hc-fw"></i></div>').appendTo(editor);
+					imgCtn.find('.zmdi-close-circle-o').on('click', function(e) {
+						imgCtn.remove();
+					});
+				}
             },
             'Error': function(up, err, errTip) {
                 //上传出错时,处理相关的事情

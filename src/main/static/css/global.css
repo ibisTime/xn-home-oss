@@ -276,6 +276,9 @@ input[type=file] {
 	max-width: 300px;
 	position: relative;
 }
+.img-ctn img {
+    max-width: 300px;
+}
 
 .btn-file+img:hover {
 	outline: 1px solid #949494;
@@ -413,4 +416,33 @@ li input[type="radio"] {
 
 .form-info li label b {
 	color: red;
+}
+
+.img-ctn img+.zmdi-close-circle-o{
+    display: none;
+    padding-left: 0px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    font-size: 40px;
+    color: #505050;
+    cursor: pointer;
+}
+
+.img-ctn:hover .zmdi-close-circle-o{
+    display: block;
+}
+
+.img-ctn .zmdi-close-circle-o:hover{
+    display: block;
+}
+
+.img-ctn:hover img{
+    -webkit-filter:grayscale(1);
+}
+
+.img-ctn+.img-ctn, .form-info img+img {
+    margin-left: 10px;
 }
