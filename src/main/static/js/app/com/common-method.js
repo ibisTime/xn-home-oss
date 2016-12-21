@@ -1262,6 +1262,7 @@ function buildDetail(options) {
 //				}
 //			});
 			data['id'] = data['code'];
+            options.searchParams && $.extend(data, options.searchParams);
 			reqApi({
 				code: code ? options.editCode : options.addCode,
 			    json: data
