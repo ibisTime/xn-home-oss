@@ -363,6 +363,14 @@ $.fn.renderDropdown2 = function(data, defaultOption) {
 	this.html(html);
 };
 
+$.fn.renderDropdown3 = function(data, keyName, valueName, defaultOption) {
+    var html = "<option value=''></option>" + (defaultOption || '');
+    for(var i = 0;i < data.length;i++){
+        html += "<option value='"+data[i][keyName]+"'>"+data[i][valueName]+"</option>";
+    }
+    this.html(html);
+};
+
 function renderLink(link, name) {
 	return '<a href="'+link+'" target="_blank">'+name+'</a>';
 }
@@ -1277,7 +1285,10 @@ function buildDetail(options) {
 	for (var i = 0, len = dropDownList.length; i < len; i++) {
 		var item = dropDownList[i];
 		var data = {};
-		if (item.data) {
+        if(item.compData){
+            data = item.compData;
+            $('#' + item.field).renderDropdown3(item.compData, item.keyName, item.valueName);
+        }else if (item.data) {
 			data = $('#' + item.field).renderDropdown2(item.data);
 		}
 		else if (item.key) {
