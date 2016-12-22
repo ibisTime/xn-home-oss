@@ -28,7 +28,7 @@ $(function() {
 	buildList(
         {
         	router:"banner", 
-        	columns:"columns",
+        	columns:columns,
 		    searchParams: {
 		    	companyCode: getCompanyId(getUserId())
 		    },

@@ -1,5 +1,4 @@
 $(function() {
-	
 	var code = getQueryString('code');
 	var companyCode = getCompanyId(getUserId());
 	var view = true;
@@ -15,10 +14,11 @@ $(function() {
 		title: '大类',
 		//url: !!view ? ($('#basePath').val() + '/merchant/genre/detail') 
 			//	: ($('#basePath').val() + '/merchant/genre/list?parentCode=0&companyCode=' + companyCode),
-		listCode:'808007',
-		detailCode:'',
+		listCode:'808006',
+		detailCode:"808007",
 		params:{
 			companyCode:companyCode,
+			parentCode:"0",
 			type:'1',
 			
 		},
@@ -33,13 +33,10 @@ $(function() {
 				//url: $('#basePath').val() + '/merchant/genre/list?companyCode=' + companyCode + '&parentCode=' + v,
 			    listCode:"808006",
 			    params:{
-			    	parentCode:parentCode,
+			    	parentCode:v,
 			    	companyCode:companyCode,
 					type:'1',
-			    	
 			    },
-				
-				
 				keyName: 'code',
 				valueName: 'name'
 			});
@@ -49,7 +46,7 @@ $(function() {
 		title: '小类',
 		type: 'select',
 		//url: !!view ? ($('#basePath').val() + '/merchant/genre/detail') : '',
-		listCode:'808007',
+		detailCode:'808007',
 		keyName: 'code',
 		valueName: 'name',
 		readonly: !!view,
@@ -62,13 +59,13 @@ $(function() {
 		readonly: true
 	}, {
 		title: '原价',
-		field: 'originalPrice',
+		field: 'price1',
 		amount: true,
 		required: true
 	}, {
 		title: '折扣价',
 		amount: true,
-		field: 'discountPrice',
+		field: 'price2',
 		required: true
 	}, {
 		title: '位置',
@@ -97,15 +94,27 @@ $(function() {
 		maxlength: 255
 	}];
 	
-	buildDetail(router, fields, code, {
-		buttons: [{
-			title: '上架',
-			handler: function() {
-				if ($('#jsForm').valid()) {
-					var data = $('#jsForm').serializeObject();
-					$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
-						data[el.id] = $(el).attr('src');
-					});	
+	buildDetail({
+			router:"input", 
+			fields:fields, 
+			code:code,
+			detailCode: "808022",
+			addCode:"808010",
+			deleteCode:"808011",
+			editCode:"808012",
+			pageCode:"808020",
+			listCode:"808021",
+			detailCode:"808022",
+			putCode:"808013",
+			pullCode:"808014",
+			buttons: [{
+				title: '上架',
+				handler: function() {
+					if ($('#jsForm').valid()) {
+						var data = $('#jsForm').serializeObject();
+						$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
+							data[el.id] = $(el).attr('src');
+						});	
 //					var url = $("#basePath").val()+ '/merchant/input/put';
 //					ajaxPost(url, data).then(function(res) {
 //						if (res.success) {

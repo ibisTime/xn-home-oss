@@ -1,5 +1,4 @@
 $(function() {
-
 	var code = getQueryString('code');
 	var router = '/merchant/order';
 //快递异常	
@@ -59,16 +58,30 @@ $(function() {
 		maxlength: 255
 	}];
 	
-	buildDetail(router, fields, code, {
-		buttons: [{
-			title: '确定',
-			handler: function() {
-				if ($('#jsForm').valid()) {
-					var data = $('#jsForm').serializeObject();
-					$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
-						data[el.id] = $(el).attr('src');
-					});
-				
+	buildDetail({
+				router:"order",
+				fields:fields,
+				code:code,
+				refundCode:"808056",
+				pageCode:"808070",
+				listCode:"808071",
+				detailCode:"808072",
+				logisticsCode:"808054",
+				siteCode:"808055",
+				sureCode:'808057',
+				abnormalCode:"808056"
+				searchParams: {
+					orderCode: logisticsCode,
+		        },
+		        view: view,
+				buttons: [{
+					title: '确定',
+					handler: function() {
+						if ($('#jsForm').valid()) {
+							var data = $('#jsForm').serializeObject();
+							$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
+								data[el.id] = $(el).attr('src');
+							});
 //					var url = $("#basePath").val()+ '/merchant/order/abnormal';
 //					ajaxPost(url, data).then(function(res) {
 //						if (res.success) {

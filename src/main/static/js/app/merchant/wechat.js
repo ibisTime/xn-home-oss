@@ -1,6 +1,4 @@
 $(function() {
-	
-	showPermissionControl();
 	var companyCode = getCompanyId(getUserId());
 	var router = '/merchant/wechat';
 	

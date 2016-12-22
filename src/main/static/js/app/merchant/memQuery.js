@@ -1,5 +1,4 @@
 $(function(){
-	showPermissionControl();
 	var userId = getUserId();
 	var router = '/merchant/memQuery';
 	
@@ -112,6 +111,6 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href ="./integral.htm?userId="+selRecords[0].userId;
+		window.location.href ="./integral.html?userId="+selRecords[0].userId;
 	});
 })

@@ -1,7 +1,5 @@
 $(function(){
-	showPermissionControl();
 	var router = '/merchant/genre';
-	
 	var columns = [{
 		field : '',
 		title : '',
@@ -17,7 +15,8 @@ $(function(){
 		listCode:'808006',
 		params:{
 			type:"1",
-			companyCode:companyCode,
+			parentCode:"0",
+			companyCode:getCompanyId(getUserId()),
 		},
 		keyName: 'code',
 		valueName: 'name',

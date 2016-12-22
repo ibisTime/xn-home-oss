@@ -13,6 +13,7 @@ $(function() {
 		listCode:"808006",
 		params:{
 			companyCode:companyCode,
+			parentCode:"0",
 			type:'1',
 		},
 		keyName: 'code',
@@ -67,25 +68,7 @@ $(function() {
 		type : 'img',
 		readonly: !!view,
 		required: true
-	}, {
-		title: '展示图2',
-		field: 'pic2',
-		type : 'img',
-		readonly: !!view,
-		required: true
-	}, {
-		title: '展示图3',
-		field: 'pic3',
-		type : 'img',
-		readonly: !!view,
-		required: true
-	}, {
-		title: '展示图4',
-		field: 'pic4',
-		type : 'img',
-		readonly: !!view,
-		required: true
-	}, {
+	},  {
 		title: '图文详情',
 		field: 'description',
 		type: 'textarea',
@@ -126,14 +109,12 @@ $(function() {
 	//buildDetail(router, fields, code, options);
 	
 	buildDetail({
+		router:"input",
         fields: fields,
         code: code,
         addCode: '808010',
         editCode:"808012",
         detailCode:"808022",
-        searchParams: {
-            type: "2"
-        },
         view: view
     });
 	

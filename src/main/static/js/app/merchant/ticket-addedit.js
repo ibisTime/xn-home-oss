@@ -50,17 +50,18 @@ $(function() {
 		value: '1'
 	}];
 	
-	var options = {};
-	if (view) {
-		options.buttons = [{
-			'title': '返回',
-			handler: function() {
-				goBack();
-			}
-		}];
-	}
+//	var options = {};
+//	if (view) {
+//		options.buttons = [{
+//			'title': '返回',
+//			handler: function() {
+//				goBack();
+//			}
+//		}];
+//	}
 	//buildDetail(router, fields, code, options);
 	buildDetail({
+		router:"ticket",
         fields: fields,
         code: code,
         addCode: '805320',

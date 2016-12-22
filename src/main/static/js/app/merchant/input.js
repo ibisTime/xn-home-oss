@@ -17,7 +17,8 @@ $(function(){
 		listCode:"808006",
 		params:{
 			type:'1',
-		    companyCode:companyCode,	
+		    companyCode:companyCode,
+		    parentCode:"0",
 		},
 		
 		keyName: 'code',
@@ -53,11 +54,11 @@ $(function(){
     	formatter: Dict.getNameForList('product_status'),
     	key: 'product_status'
     }, {
-    	field : 'originalPrice',
+    	field : 'price1',
     	title : '售价',
     	formatter: moneyFormat
     }, {
-    	field : 'discountPrice',
+    	field : 'price2',
     	title : '折扣价',
     	formatter : moneyFormat
     }, {
@@ -105,7 +106,7 @@ $(function(){
 			alert("该产品已上架");
 			return;
 		}
-		window.location.href = "./put.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = "./put.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 	
 	$('#pullBtn').click(function() {

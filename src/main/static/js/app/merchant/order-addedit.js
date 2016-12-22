@@ -64,17 +64,18 @@ $(function() {
 		readonly: !!view
 	}];
 	
-	var options = {};
-	if (view) {
-		options.buttons = [{
-			'title': '返回',
-			handler: function() {
-				goBack();
-			}
-		}];
-	}
+//	var options = {};
+//	if (view) {
+//		options.buttons = [{
+//			'title': '返回',
+//			handler: function() {
+//				goBack();
+//			}
+//		}];
+//	}
 //	buildDetail(router, fields, code, options);
 	buildDetail({
+		router:"order",
         fields: fields,
         code: code,
         listCode:"808071",
@@ -83,9 +84,6 @@ $(function() {
         detailCode:"808072",
         sureCode:"808057",
         abnormalCode:"808056",
-        searchParams: {
-            type: "2"
-        },
         view: view
     });
 	
