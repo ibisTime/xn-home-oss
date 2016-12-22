@@ -56,7 +56,7 @@ $(function(){
         pagination: '.tabs',
         paginationClickable: true,
         bulletClass: 'tab',
-        onlyExternal : true,
+        //onlyExternal : true,
         bulletActiveClass: 'active',
 //        //loop: true,
         paginationBulletRender: function (index, className) {
@@ -93,7 +93,16 @@ $(function(){
 			alert('请输入用户名');
 		} else {
 			$('#smsBtn').prop('disabled', true);
-			doPostAjax($("#basePath").val()+"/user/pwd/find/sms", {
+			reqApi({
+				code: '805058',
+				json: data
+			}).then(function(data) {
+				location.href = "main.html";
+				window.sessionStorage.setItem('token', data.token || data.userId);
+				window.sessionStorage.setItem('userId', data.userId);
+			});
+			//doPostAjax($("#basePath").val()+"/user/pwd/find/sms",
+					{
 				loginName: $('#loginName1').val()
 			}, function(res) {
 				$('#smsBtn').prop('disabled', false);
@@ -115,7 +124,16 @@ $(function(){
 			alert('请输入新密码');
 		} else {
 			$('#confirmBtn').prop('disabled', true);
-			doPostAjax($("#basePath").val()+"/user/pwd/find", {
+			reqApi({
+				code: '805058',
+				json: data
+			}).then(function(data) {
+				location.href = "main.html";
+				window.sessionStorage.setItem('token', data.token || data.userId);
+				window.sessionStorage.setItem('userId', data.userId);
+			});
+			doPostAjax($("#basePath").val()+"/user/pwd/find",
+					{
 				loginName: $('#loginName1').val(),
 				smsCaptcha: $('#smsCaptcha').val(),
 				newLoginPwd: $('#newLoginPwd').val()

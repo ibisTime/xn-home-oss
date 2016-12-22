@@ -100,13 +100,10 @@ $(function() {
 			code:code,
 			detailCode: "808022",
 			addCode:"808010",
-			deleteCode:"808011",
 			editCode:"808012",
-			pageCode:"808020",
-			listCode:"808021",
+			
 			detailCode:"808022",
-			putCode:"808013",
-			pullCode:"808014",
+			
 			buttons: [{
 				title: '上架',
 				handler: function() {
@@ -128,6 +125,7 @@ $(function() {
 				        }).done(function(data) {
 				            alert('操作成功');
 				            $('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});
+				            goBack();
 				        });
 				}
 			}

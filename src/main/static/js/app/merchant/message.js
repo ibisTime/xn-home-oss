@@ -35,6 +35,7 @@ $(function(){
 	buildList({
 		router:"message", 
 		columns:columns, 
+		pageCode: "805130",
 		searchParams: {
 			companyCode: getCompanyId(getUserId())
 		}

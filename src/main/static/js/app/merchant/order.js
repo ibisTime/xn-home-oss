@@ -39,7 +39,7 @@ $(function(){
 	buildList({
 		router: 'order',
         columns: columns,
-        
+        pageCode: "808070",
 		searchParams: {
 			companyCode: companyCode
 		}

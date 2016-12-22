@@ -35,6 +35,7 @@ $(function(){
 	buildList({
 		router:"memQuery",
 		columns:columns,
+		pageCode: '805054',
 		searchParams: {
 			companyCode: getCompanyId(getUserId())
 		}

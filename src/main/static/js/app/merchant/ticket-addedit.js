@@ -65,12 +65,11 @@ $(function() {
         fields: fields,
         code: code,
         addCode: '805320',
-        discardCode:"805322",
-        pageCode:"805330",
-        listCode:"805331",
+        
         detailCode:"805332",
         searchParams: {
-        	useTimes: "1"
+        	useTimes: "1",
+        	creator: sessionStorage.getItem('userName')
         },
         view: view
     });

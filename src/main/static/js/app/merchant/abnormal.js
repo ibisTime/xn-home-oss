@@ -66,14 +66,14 @@ $(function() {
 				pageCode:"808070",
 				listCode:"808071",
 				detailCode:"808072",
-				logisticsCode:"808054",
-				siteCode:"808055",
-				sureCode:'808057',
-				abnormalCode:"808056"
+				//logisticsCode:"808054",
+				//siteCode:"808055",
+				//sureCode:'808057',
+				//abnormalCode:"808056"
 				searchParams: {
-					orderCode: logisticsCode,
+					//orderCode: logisticsCode,
 		        },
-		        view: view,
+		        //view: view,
 				buttons: [{
 					title: '确定',
 					handler: function() {
