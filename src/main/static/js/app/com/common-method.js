@@ -482,7 +482,7 @@ function getCompany(userId) {
         },
         sync: true
     }).then(function (res) {
-        res1 = res.data.length > 0 ? res.data[0] : '';
+        res1 = res.length > 0 ? res[0] : '';
     });
     return res1;
 }
@@ -497,7 +497,7 @@ function getCompanyId(userId) {
         },
         sync: true
     }).then(function (res) {
-        res1 = res.data.length > 0 ? res.data[0].code : '0';
+        res1 = res.length > 0 ? res[0].code : '0';
     });
     return res1;
 }
