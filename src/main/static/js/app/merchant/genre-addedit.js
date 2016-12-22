@@ -12,6 +12,7 @@ $(function() {
 		listCode:'808006',
 		params:{
 			type:"1",
+			parentCode:"0",
 			companyCode:companyCode,
 		},
 		keyName: 'code',
@@ -53,6 +54,7 @@ $(function() {
 	}
 	//buildDetail(router, fields, code, options);
 	buildDetail({
+		router:"genre",
         fields: fields,
         code: code,
         addCode: '808000',

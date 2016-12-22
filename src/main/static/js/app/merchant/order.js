@@ -54,7 +54,7 @@ $(function(){
 		
 		
 		
-		window.location.href = "./refund.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = "./refund.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 	
 	$('#logisticsBtn').click(function() {
@@ -63,7 +63,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = "./logistics.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = "./logistics.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 	
 	$('#siteBtn').click(function() {
@@ -72,7 +72,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = +"./site.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = +"./site.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 	
 	$('#sureBtn').click(function() {
@@ -81,7 +81,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = "./sure.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = "./sure.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 	
 	$('#abnormalBtn').click(function() {
@@ -90,6 +90,6 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = "./abnormal.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
+		window.location.href = "./abnormal.html?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 })

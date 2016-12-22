@@ -45,21 +45,22 @@ $(function() {
 		value: getCompanyId(getUserId())
 	}];
 	
-	var options = {};
-	if (view) {
-		options.buttons = [{
-			'title': '返回',
-			handler: function() {
-				goBack();
-			}
-		}];
-	}
+//	var options = {};
+//	if (view) {
+//		options.buttons = [{
+//			'title': '返回',
+//			handler: function() {
+//				goBack();
+//			}
+//		}];
+//	}
 	//buildDetail(router, fields, code, options);
-	buildList({
+	buildDetail({
 		 router: 'message',
-         columns: columns,
-		 searchParams: {
-			 companyCode: getCompanyId(getUserId())
-		},
+		 fields: fields,
+		 code:code,
+//		 searchParams: {
+//			 companyCode: getCompanyId(getUserId())
+//		},
     });
 });

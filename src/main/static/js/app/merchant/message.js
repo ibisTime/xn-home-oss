@@ -1,11 +1,10 @@
 $(function(){
-	
 	var router = '/merchant/message';
 	
 	var columns = [{
 		field : '',
 		title : '',
-		checkbox : true
+		checkbox: true
 	},{
 		field : 'title',
 		title : '标题',

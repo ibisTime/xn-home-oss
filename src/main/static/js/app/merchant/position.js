@@ -1,5 +1,4 @@
 $(function(){
-	showPermissionControl();
 	var router = '/merchant/position';
 	
 	var columns = [{
@@ -21,8 +20,7 @@ $(function(){
 		title: '次序',
 		sortable: true
 	}];
-	buildList(
-			{
+	buildList({
 		 router: 'position',
          columns: columns,
 	     sortName: 'orderNo',

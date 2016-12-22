@@ -31,26 +31,30 @@ $(function() {
 		value: companyCode
 	}];
 	
-	var options = {};
-	if (view) {
-		options.buttons = [{
-			'title': '返回',
-			handler: function() {
-				goBack();
-			}
-		}];
-	}
+//	var options = {};
+//	if (view) {
+//		options.buttons = [{
+//			'title': '返回',
+//			handler: function() {
+//				goBack();
+//			}
+//		}];
+//	}
 	//buildDetail(router, fields, code, options);
 	
 	buildDetail({
+		router:"position",
         fields: fields,
         code: code,
         addCode: '808000',
         editCode:"808002",
         detailCode:"808007",
-        searchParams: {
-            type: "2"
-        },
+        deleteCode:"808001",
+        pageCode:"808005",
+        listCode:"808006",
+//        searchParams: {
+//            type: "2"
+//        },
         view: view
     });
 });

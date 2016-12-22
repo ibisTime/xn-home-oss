@@ -31,18 +31,19 @@ $(function() {
 		readonly: view
 	}];
 	
-	var options = {};
-	if (view) {
-		options.buttons = [{
-			'title': '返回',
-			handler: function() {
-				goBack();
-			}
-		}];
-	}
+//	var options = {};
+//	if (view) {
+//		options.buttons = [{
+//			'title': '返回',
+//			handler: function() {
+//				goBack();
+//			}
+//		}];
+//	}
 	
 	//buildDetail(router, fields, code, options);
 	buildDetail({
+		router:"wechat",
         fields: fields,
         code: code,
         pageCode:"806030",

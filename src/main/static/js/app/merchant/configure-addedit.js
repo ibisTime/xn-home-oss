@@ -23,12 +23,12 @@ $(function() {
 	
 	//buildDetail(router, fields, code);
 	buildDetail({
+		router:"configure",
 		fields:fields,
 		code:code,
 	    editCode:"808910",
 	    detailCode:"808916",
 	    pageCode:"808915",
-		
 	});
 	
 });

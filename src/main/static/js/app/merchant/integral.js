@@ -37,8 +37,7 @@ $(function(){
     	field: 'remark',
     	title: '备注'
     }];
-	buildList(
-			{
+	buildList({
 		 router: 'integral',
          columns: columns,
 	     sortName: 'orderNo',

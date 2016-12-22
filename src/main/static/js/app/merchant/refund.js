@@ -58,7 +58,22 @@ $(function() {
 		maxlength: 255,
 	}];
 	
-	buildDetail(router, fields, code, {
+	buildDetail({
+		router:"order", 
+		fieldas:fields, 
+		code:code, 
+		refundCode:"808056",
+		pageCode:"808070",
+		listCode:"808071",
+		detailCode:"808072",
+		logisticsCode:"808054",
+		siteCode:"808055",
+		sureCode:"808057",
+		abnormalCode:"808056",
+		searchParams: {
+			orderCode:logisticsCode,
+        },
+        view: view,
 		buttons: [{
 			title: '确定',
 			handler: function() {
@@ -67,7 +82,6 @@ $(function() {
 					$('#jsForm').find('input[type=file]').parent().next().each(function(i, el) {
 						data[el.id] = $(el).attr('src');
 					});
-					
 //					var url = $("#basePath").val()+ '/merchant/order/refund';
 //					ajaxPost(url, data).then(function(res) {
 //						if (res.success) {
@@ -75,7 +89,6 @@ $(function() {
 //							goBack();
 //						}
 //					});
-					
 					  reqApi({
 							code: "808056",
 							json: data,
@@ -83,7 +96,6 @@ $(function() {
 							alert("操作成功");
 							$('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});
 						});
-					
 				}
 			}
 		}, {
