@@ -127,6 +127,7 @@ $(function() {
 				            json: data
 				        }).done(function(data) {
 				            alert('操作成功');
+                         	goBack();
 				            $('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});
 				        });
 				}

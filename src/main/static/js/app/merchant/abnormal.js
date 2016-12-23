@@ -91,7 +91,7 @@ $(function() {
 //					});
 					reqApi({
 						code: "808056",
-						json: data,
+						json: data
 					}).done(function(data) {
 						alert("操作成功");
 						$('#tableList').bootstrapTable('refresh',{url: $('#tableList').bootstrapTable('getOptions').url});

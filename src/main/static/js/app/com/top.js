@@ -52,7 +52,7 @@ $(function(){
 	});
 	
 	$("#logout").click(function(){
-		ajaxGet(OSS.mainUrl.replace(/\/api.*/,'') + '/logOut', {
+		ajaxGet(OSS.mainUrl + '/logOut', {
 			token: window.sessionStorage.getItem('token')
 		}).then(function(res) {
 			if (res.errorCode == '0') {

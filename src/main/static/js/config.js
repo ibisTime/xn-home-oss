@@ -1,6 +1,6 @@
 var OSS = {};
 // mainUrl
-// OSS.mainUrl = '//121.43.101.148:5600/forward-service/api';
+// OSS.mainUrl = '//121.43.101.148:5601/forward-service/api';
 OSS.mainUrl = '/mainUrl';
 // smsUrl
 // OSS.smsUrl = '//121.43.101.148:5600/std-sms/api';

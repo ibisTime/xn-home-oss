@@ -63,7 +63,7 @@ function urlDispatch(code) {
 }
 
 function reqApi(options) {
-	var url = urlDispatch(options.code);
+	var url = urlDispatch(options.code) + "/api";
 	
 	var params = {
 		code: options.code,

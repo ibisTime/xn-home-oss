@@ -87,7 +87,7 @@ $(function(){
 			companyCode:companyCode,
 		},
 		beforeEdit: function(record) {
-			if (record.status == 1) {
+			if (record.status == 3) {
 				alert("该产品已上架");
 				return false;
 			} else {
@@ -102,7 +102,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		if(selRecords[0].status == 1){
+		if(selRecords[0].status == 3){
 			alert("该产品已上架");
 			return;
 		}
@@ -115,7 +115,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		if((selRecords[0].status == 0) || (selRecords[0].status == 2)){
+		if((selRecords[0].status == 0) || (selRecords[0].status == 3)){
 			alert("该产品未上架");
 			return;
 		}
@@ -152,7 +152,7 @@ $(function(){
 			alert("该商品正在上架中，不可删除");
 			return;
 		}
-		if(selRecords[0].status == 2){
+		if(selRecords[0].status == 3){
 			alert("该商品已上架过，不可删除");
 			return;
 		}
@@ -186,9 +186,9 @@ $(function(){
 				//url: $('#basePath').val() + '/merchant/genre/list?companyCode=' + companyCode + '&parentCode=' + v,
 				listCode:'808006',
 				params:{
-//					companyCode:companyCode,
+					companyCode:companyCode,
 					parentCode:v,
-					type:'1',
+					type:'1'
 				},
 				keyName: 'code',
 				valueName: 'name'
