@@ -62,14 +62,7 @@ $(function() {
 				router:"order",
 				fields:fields,
 				code:code,
-				// refundCode:"808056",
-				// pageCode:"808070",
-				// listCode:"808071",
 				detailCode:"808072",
-				// logisticsCode:"808054",
-				// siteCode:"808055",
-				// sureCode:'808057',
-				// abnormalCode:"808056"
 				searchParams: {
 					//orderCode: logisticsCode,
 		        },

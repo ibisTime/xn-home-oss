@@ -29,8 +29,11 @@ $(function() {
         {
         	router:"banner", 
         	columns:columns,
+        	pageCode: '806050',
+        	deleteCode: '806041',
 		    searchParams: {
-		    	companyCode: getCompanyId(getUserId())
+		    	companyCode: getCompanyId(getUserId()),
+		    	type: "2"
 		    },
 			urlParams: {
 				b: isBranch

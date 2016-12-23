@@ -31,7 +31,8 @@ $(function(){
 	}];
 	buildList({
 		router:'ticket', 
-		columns:columns, 
+		columns:columns,
+		pageCode: '805330',
 		searchParams: {
 			companyCode: getCompanyId(getUserId())
 		}

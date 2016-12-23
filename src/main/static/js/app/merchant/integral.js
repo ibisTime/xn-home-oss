@@ -42,6 +42,7 @@ $(function(){
          columns: columns,
 	     sortName: 'orderNo',
 	     sortOrder: 'asc',
+	     pageCode: '805310',
 		 searchParams: {
 			 userId: userId
 		}

@@ -25,8 +25,10 @@ $(function(){
          columns: columns,
 	     sortName: 'orderNo',
 	     sortOrder: 'asc',
+	     pageCode: '808005',
 		 searchParams: {
-			 companyCode: getCompanyId(getUserId())
+			 companyCode: getCompanyId(getUserId()),
+			 type: "2"
 		},
     });
 //	buildList(router, columns, {

@@ -1855,3 +1855,38 @@ function uploadInit() {
     // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
     // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
 }
+function calculateSecurityLevel(password) {
+    var strength_L = 0;
+    var strength_M = 0;
+    var strength_H = 0;
+
+    for (var i = 0; i < password.length; i++) {
+        var code = password.charCodeAt(i);
+        // 数字
+        if (code >= 48 && code <= 57) {
+            strength_L++;
+            // 小写字母 大写字母
+        } else if ((code >= 65 && code <= 90) ||
+            (code >= 97 && code <= 122)) {
+            strength_M++;
+            // 特殊符号
+        } else if ((code >= 32 && code <= 47) ||
+            (code >= 58 && code <= 64) ||
+            (code >= 94 && code <= 96) ||
+            (code >= 123 && code <= 126)) {
+            strength_H++;
+        }
+    }
+    // 弱
+    if ((strength_L == 0 && strength_M == 0) ||
+        (strength_L == 0 && strength_H == 0) ||
+        (strength_M == 0 && strength_H == 0)) {
+        return "1";
+    }
+    // 强
+    if (0 != strength_L && 0 != strength_M && 0 != strength_H) {
+        return "3";
+    }
+    // 中
+    return "2";
+}
