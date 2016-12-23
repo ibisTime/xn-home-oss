@@ -93,6 +93,7 @@ $(function(){
 			alert('请输入用户名');
 		} else {
 			$('#smsBtn').prop('disabled', true);
+			
 			reqApi({
 				code: '805058',
 				json: data
@@ -102,16 +103,16 @@ $(function(){
 				window.sessionStorage.setItem('userId', data.userId);
 			});
 			//doPostAjax($("#basePath").val()+"/user/pwd/find/sms",
-					{
-				loginName: $('#loginName1').val()
-			}, function(res) {
-				$('#smsBtn').prop('disabled', false);
-				if (res.success) {
-					count($('#smsBtn'), 60);
-				} else {
-					alert('该用户无手机号，请联系管理员。');
-				}
-			});
+//			{
+//				loginName: $('#loginName1').val()
+//			}, function(res) {
+//				$('#smsBtn').prop('disabled', false);
+//				if (res.success) {
+//					count($('#smsBtn'), 60);
+//				} else {
+//					alert('该用户无手机号，请联系管理员。');
+//				}
+//			});
 		}
 	});
 	
@@ -124,28 +125,29 @@ $(function(){
 			alert('请输入新密码');
 		} else {
 			$('#confirmBtn').prop('disabled', true);
+			
 			reqApi({
-				code: '805058',
+				code: '805059',
 				json: data
 			}).then(function(data) {
 				location.href = "main.html";
 				window.sessionStorage.setItem('token', data.token || data.userId);
 				window.sessionStorage.setItem('userId', data.userId);
 			});
-			doPostAjax($("#basePath").val()+"/user/pwd/find",
-					{
-				loginName: $('#loginName1').val(),
-				smsCaptcha: $('#smsCaptcha').val(),
-				newLoginPwd: $('#newLoginPwd').val()
-			}, function(res) {
-				$('#confirmBtn').prop('disabled', false);
-				if (res.success) {
-					alert('恭喜您重置密码成功！');
-					mySwiper.slidePrev();
-				} else {
-					alert(res.msg);
-				}
-			});
+			//doPostAjax($("#basePath").val()+"/user/pwd/find",
+//					{
+//				loginName: $('#loginName1').val(),
+//				smsCaptcha: $('#smsCaptcha').val(),
+//				newLoginPwd: $('#newLoginPwd').val()
+//			}, function(res) {
+//				$('#confirmBtn').prop('disabled', false);
+//				if (res.success) {
+//					alert('恭喜您重置密码成功！');
+//					mySwiper.slidePrev();
+//				} else {
+//					alert(res.msg);
+//				}
+//			});
 		}
 	});
 	

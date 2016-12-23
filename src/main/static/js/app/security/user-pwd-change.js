@@ -10,12 +10,19 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		var url = $("#basePath").val()+"/user/pwd/change";   //805058
-		doPostAjax(url, data, doSuccessBack);
+//		var url = $("#basePath").val()+"/user/pwd/change";   
+//		doPostAjax(url, data, doSuccessBack);
 		
-		
-		
-		
+		data.loginPwdStrength = calculateSecurityLevel(data.newLoginPwd);
+		data.userId = sessionStorage.getItem("userId");
+		reqApi({
+			code: '805049',
+			json: data
+		}).then(function(data) {
+			location.href = "../main.html";
+//			window.sessionStorage.setItem('token', data.token || data.userId);
+//			window.sessionStorage.setItem('userId', data.userId);
+		});
 		
 	
 	});
