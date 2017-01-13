@@ -2,6 +2,7 @@ $(function(){
 	
 	if (!sessionStorage.getItem('token')) {
 		location.href = 'signin.html';
+		return;
 	}
 	
 	// 获取用户
